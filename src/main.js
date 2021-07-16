@@ -7,10 +7,11 @@ import '@/assets/iconfont/iconfont'
 
 import './icons'
 
-import { Button } from 'ant-design-vue'// svg组件
+import { Button, Layout } from 'ant-design-vue'// svg组件
 
 // 注册到全局
 Vue.use(Button)
+Vue.use(Layout)
 
 Vue.config.productionTip = false
 
