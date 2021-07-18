@@ -2,18 +2,22 @@
     <div class="index-container">
         <a-layout-header class="header-container">
             <left-logo></left-logo>
-            <div class="header-center">center</div>
-            <div>right</div>
+            <center-nav></center-nav>
+            <right-nav></right-nav>
         </a-layout-header>
     </div>
 </template>
 
 <script>
-import LeftLogo from './components/LeftLogo.vue'
+import LeftLogo from './components/LeftLogo'
+import CenterNav from './components/CenterNav'
+import RightNav from './components/RightNav'
 export default {
     name: 'index',
     components: {
-        LeftLogo
+        LeftLogo,
+        CenterNav,
+        RightNav
     }
 
 }
@@ -26,10 +30,6 @@ export default {
             padding: 0 28px;
             display: flex;
             color: #fff;
-            .header-center{
-                padding-left: 60px;
-                flex: 1;
-            }
         }
     }
 </style>
