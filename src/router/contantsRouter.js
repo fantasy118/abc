@@ -3,7 +3,7 @@ import ControlLayout from '@/layout/ControlLayout'
 export default [
     // 全部市场
     {
-        path: '/allMarket',
+        path: '/',
         redirect: '/allMarket/dataMarket',
         name: 'DataMarket',
         component: BasicLayout,
