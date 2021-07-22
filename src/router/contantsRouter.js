@@ -71,7 +71,8 @@ export default [
         name: 'Notify',
         meta: {
             showBread: true,
-            name: '通知中心'
+            name: '通知中心',
+            group: 'ControlSider'
         },
         children: [
             {
