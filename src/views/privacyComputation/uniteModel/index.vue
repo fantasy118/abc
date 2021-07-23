@@ -1,6 +1,7 @@
 <template>
     <div class="unite-model-container">
         index--联合建模
+        <router-view></router-view>
     </div>
 </template>
 

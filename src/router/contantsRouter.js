@@ -46,12 +46,33 @@ export default [
         children: [
             {
                 path: '/privacyComputation/uniteModel',
+                redirect: '/privacyComputation/uniteModel/taskList',
                 component: () => import('@/views/privacyComputation/uniteModel'),
                 name: 'UniteModel',
                 meta: {
                     showBread: true,
                     name: '联合建模'
-                }
+                },
+                children: [
+                    {
+                        path: '/privacyComputation/uniteModel/taskList',
+                        component: () => import('@/views/privacyComputation/uniteModel/taskList'),
+                        name: 'UniteTaskList',
+                        meta: {
+                            showBread: true,
+                            name: '子任务列表'
+                        }
+                    },
+                    {
+                        path: '/privacyComputation/uniteModel/taskDetail',
+                        component: () => import('@/views/privacyComputation/uniteModel/taskDetail.vue'),
+                        name: 'TaskDetail',
+                        meta: {
+                            showBread: true,
+                            name: '子任务详情'
+                        }
+                    }
+                ]
             },
             {
                 path: '/privacyComputation/uniteQuery',
@@ -64,9 +85,29 @@ export default [
             }
         ]
     },
+    /* {
+        path: '/taskManage',
+        component: ControlLayout,
+        meta: {
+            showBread: true,
+            name: '任务管理',
+            group: 'ControlSider'
+        },
+        children: [
+            {
+                path: '/taskManage/taskList',
+                component: () => import('@/views/temp'),
+                name: 'TaskList',
+                meta: {
+                    showBread: true,
+                    name: '通知中心列表',
+                    hidden: false
+                }
+            }
+        ]
+    }, */
     {
         path: '/notify',
-        redirect: '/notify/noticeList',
         component: ControlLayout,
         name: 'Notify',
         meta: {
@@ -76,7 +117,7 @@ export default [
         },
         children: [
             {
-                path: '/notify/noticeList',
+                path: '/notify',
                 component: () => import('@/views/notify/noticeList'),
                 name: 'NoticeList',
                 meta: {

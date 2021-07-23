@@ -1,10 +1,10 @@
 <template>
     <div class="right-nav-container">
         <a-menu theme="dark" :selected-keys="[currentKey]" mode="horizontal">
-            <a-menu-item key="/notify/noticeList">
+            <a-menu-item key="/notify">
                 <router-link :to="{name:'Notify'}">通知中心</router-link>
             </a-menu-item>
-            <a-menu-item key="/privacyComputation/uniteModel">
+            <a-menu-item key="/privacyComputation">
                 <router-link :to="{name:'PrivacyComputation'}">控制台</router-link>
             </a-menu-item>
             <a-menu-item key="/myInfo/componeyInfo">
@@ -17,9 +17,21 @@
 <script>
 export default {
     name: 'RightNav',
+    data () {
+        return {
+            keyList: ['/notify', '/privacyComputation', '/myInfo/componeyInfo']
+        }
+    },
     computed: {
         currentKey () {
-            return this.$route.path
+            let key = ''
+            for (const item of this.keyList) {
+                if (this.$route.path.includes(item)) {
+                    key = item
+                    break
+                }
+            }
+            return key
         }
     }
 
