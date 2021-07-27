@@ -2,15 +2,16 @@
     <a-layout-sider width="200" style="background: #001529">
         <a-menu theme="dark" :open-keys.sync="openKeys" :selected-keys="selectedKeys" mode="inline">
             <template v-for="item in menuList">
-                <a-sub-menu :key="item.path" v-if="item.children.length>1">
-                    <template #title>{{item.meta.name}}</template>
-                    <a-menu-item v-for="innerItem in item.children" :key="innerItem.path | nodeFilter(item.children,$route.path)">
-                        <router-link :to="innerItem.path">{{innerItem.meta.name}}</router-link>
-                    </a-menu-item>
-                </a-sub-menu>
-                <a-menu-item v-else :key="item.path">
+                <a-menu-item v-if="item.children&&item.children.length===1" :key="item.path">
                     <router-link :to="item.path">{{item.meta.name}}</router-link>
                 </a-menu-item>
+                <sub-menu v-else :menuInfo="item" :key="item.path"></sub-menu>
+                <!-- <a-sub-menu :key="item.path" v-else>
+                    <template #title>{{item.meta.name}}</template>
+                    <a-menu-item v-for="innerItem in item.children" :key="innerItem.path">
+                        <router-link :to="innerItem.path">{{innerItem.meta.name}}</router-link>
+                    </a-menu-item>
+                </a-sub-menu> -->
             </template>
         </a-menu>
     </a-layout-sider>
@@ -18,8 +19,12 @@
 
 <script>
 import routeList from '@/router/contantsRouter'
+import SubMenu from './subMenu'
 export default {
     name: 'TheSiderBar',
+    components: {
+        SubMenu
+    },
     data () {
         return {
             openKeys: [],
@@ -57,9 +62,10 @@ export default {
     watch: {
         '$route.path': {
             handler (path) {
+                console.log(path)
                 for (const item of this.menuList) {
                     if (path.includes(item.path)) {
-                        this.openKeys = [item.path]
+                        // this.openKeys = [item.path]
                     }
                 }
                 this.selectedKeys = [path]

@@ -58,6 +58,7 @@ export default [
                         path: '/privacyComputation/uniteModel/taskList',
                         component: () => import('@/views/privacyComputation/uniteModel/taskList'),
                         name: 'UniteTaskList',
+                        hidden: true,
                         meta: {
                             showBread: true,
                             name: '子任务列表'
@@ -67,6 +68,7 @@ export default [
                         path: '/privacyComputation/uniteModel/taskDetail',
                         component: () => import('@/views/privacyComputation/uniteModel/taskDetail.vue'),
                         name: 'TaskDetail',
+                        hidden: true,
                         meta: {
                             showBread: true,
                             name: '子任务详情'
