@@ -58,7 +58,6 @@ export default [
                         path: '/privacyComputation/uniteModel/taskList',
                         component: () => import('@/views/privacyComputation/uniteModel/taskList'),
                         name: 'UniteTaskList',
-                        hidden: true,
                         meta: {
                             showBread: true,
                             name: '子任务列表'
@@ -67,8 +66,7 @@ export default [
                     {
                         path: '/privacyComputation/uniteModel/taskDetail',
                         component: () => import('@/views/privacyComputation/uniteModel/taskDetail.vue'),
-                        name: 'TaskDetail',
-                        hidden: true,
+                        name: 'PriTaskDetail',
                         meta: {
                             showBread: true,
                             name: '子任务详情'
@@ -87,27 +85,58 @@ export default [
             }
         ]
     },
-    /* {
+    {
         path: '/taskManage',
         component: ControlLayout,
         meta: {
             showBread: true,
-            name: '任务管理',
+            name: '周杰伦',
             group: 'ControlSider'
         },
         children: [
             {
                 path: '/taskManage/taskList',
-                component: () => import('@/views/temp'),
+                component: () => import('@/views/jay/fantasy'),
+                redirect: '/taskManage/taskList/taskNorth',
                 name: 'TaskList',
                 meta: {
                     showBread: true,
-                    name: '通知中心列表',
-                    hidden: false
+                    name: '范特西'
+                },
+                children: [
+                    {
+                        path: '/taskManage/taskList/taskNorth',
+                        component: () => import('@/views/jay/fantasy/qhc'),
+                        name: 'TaskNorth',
+                        hidden: true,
+                        meta: {
+                            showBread: true,
+                            name: '青花瓷'
+                        }
+                    },
+                    {
+                        path: '/taskManage/taskList/taskNorth2',
+                        component: () => import('@/views/jay/fantasy/parent'),
+                        name: 'TaskNorth2',
+                        hidden: true,
+                        meta: {
+                            showBread: true,
+                            name: '以父之名'
+                        }
+                    }
+                ]
+            },
+            {
+                path: '/taskManage/taskDetail',
+                component: () => import('@/views/temp'),
+                name: 'TaskDetail',
+                meta: {
+                    showBread: true,
+                    name: '一路向北'
                 }
             }
         ]
-    }, */
+    },
     {
         path: '/notify',
         component: ControlLayout,

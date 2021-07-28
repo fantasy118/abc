@@ -6,12 +6,6 @@
                     <router-link :to="item.path">{{item.meta.name}}</router-link>
                 </a-menu-item>
                 <sub-menu v-else :menuInfo="item" :key="item.path"></sub-menu>
-                <!-- <a-sub-menu :key="item.path" v-else>
-                    <template #title>{{item.meta.name}}</template>
-                    <a-menu-item v-for="innerItem in item.children" :key="innerItem.path">
-                        <router-link :to="innerItem.path">{{innerItem.meta.name}}</router-link>
-                    </a-menu-item>
-                </a-sub-menu> -->
             </template>
         </a-menu>
     </a-layout-sider>
@@ -31,44 +25,38 @@ export default {
             selectedKeys: []
         }
     },
-    filters: {
-        nodeFilter (value, list, path) {
-            let obj = {}
-            for (const item of list) {
-                if (item.path === value) {
-                    obj = item
-                    break
-                }
-            }
-            if (obj.path === path) {
-                return obj.path
-            } else {
-                if (obj.children) {
-                    for (const item of obj.children) {
-                        if (item.path === path) {
-                            return path
-                        }
-                    }
-                }
-            }
-        }
-    },
     computed: {
         menuList () {
             const parentList = routeList.filter(item => item.meta && item.meta.group === 'ControlSider')
             return parentList
+        },
+        allNodePath () {
+            function getNodeKey (routerObj, result = []) {
+                if (routerObj.children) {
+                    routerObj.children.forEach(item => {
+                        if (!result.includes(item.path) && !item.hidden) {
+                            result.push(item.path)
+                        }
+                        result = getNodeKey(item, result)
+                    })
+                }
+                return result
+            }
+            return getNodeKey({ children: this.menuList })
         }
     },
     watch: {
         '$route.path': {
             handler (path) {
-                console.log(path)
-                for (const item of this.menuList) {
-                    if (path.includes(item.path)) {
-                        // this.openKeys = [item.path]
+                this.openKeys = []
+                for (const item of this.allNodePath) {
+                    if (path.includes(item) && !this.openKeys.includes(item)) {
+                        this.openKeys.push(item)
+                    }
+                    if (path.includes(item)) {
+                        this.selectedKeys = [item]
                     }
                 }
-                this.selectedKeys = [path]
             },
             immediate: true
         }
