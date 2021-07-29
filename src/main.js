@@ -16,6 +16,8 @@ Vue.use(Menu)
 Vue.use(Breadcrumb)
 
 Vue.config.productionTip = false
+console.log(process.env.VUE_APP_BASE_API, 9090)
+console.log(process.env.NODE_ENV, 9091)
 
 new Vue({
     router,
