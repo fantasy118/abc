@@ -50,7 +50,6 @@ export default {
     watch: {
         '$route.path': {
             handler (path) {
-                console.log(path)
                 this.openKeys = []
                 for (const item of this.allNodePath) {
                     if (path.includes(item) && !this.openKeys.includes(item)) {
