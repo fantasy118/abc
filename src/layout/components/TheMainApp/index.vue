@@ -19,7 +19,7 @@ export default {
 <style lang='less' scoped>
    .the-main-app-container {
        height: calc(100vh - 68px);
-       background-color: rgb(210, 248, 189);
+       background-color: #f9f9f9;
        padding: 30px;
        .main-container{
            padding:26px;

@@ -2,24 +2,25 @@
     <div class="right-nav-container">
         <a-menu theme="dark" :selected-keys="[currentKey]" mode="horizontal">
             <a-menu-item key="/notify">
-                <router-link :to="{name:'Notify'}">通知中心</router-link>
+                <span type="link" @click="goMain('Notify','ControlSider')">通知中心</span>
             </a-menu-item>
             <a-menu-item key="/privacyComputation">
-                <router-link :to="{name:'PrivacyComputation'}">控制台</router-link>
+                <span type="link" @click="goMain('PrivacyComputation','ControlSider')">控制台</span>
             </a-menu-item>
-            <a-menu-item key="/myInfo/componeyInfo">
-                <router-link :to="{name:'ComponeyInfo'}">我的信息</router-link>
+            <a-menu-item key="/myInfo">
+                <span type="link" @click="goMain('MyInfo','UserSider')">我的信息</span>
             </a-menu-item>
         </a-menu>
     </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
     name: 'RightNav',
     data () {
         return {
-            keyList: ['/notify', '/privacyComputation', '/myInfo/componeyInfo']
+            keyList: ['/notify', '/privacyComputation', '/myInfo']
         }
     },
     computed: {
@@ -32,6 +33,13 @@ export default {
                 }
             }
             return key
+        }
+    },
+    methods: {
+        ...mapActions('router', ['updateGroup']),
+        goMain (path, name) {
+            this.updateGroup(name)
+            this.$router.push({ name: path })
         }
     }
 

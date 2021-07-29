@@ -161,22 +161,43 @@ export default [
     // 我的信息
     {
         path: '/myInfo',
-        redirect: '/myInfo/componeyInfo',
         component: ControlLayout,
-        name: 'MyInfo',
         meta: {
-            showBread: true,
-            name: '我的信息'
+            showBread: false,
+            name: '我的信息',
+            group: 'UserSider'
         },
         children: [
             {
-                path: '/myInfo/componeyInfo',
-                component: () => import('@/views/myInfo/componeyInfo'),
-                name: 'ComponeyInfo',
+                path: '/myInfo',
+                redirect: '/myInfo/list',
+                component: () => import('@/views/myInfo'),
                 meta: {
                     showBread: true,
-                    name: '公司信息'
-                }
+                    name: '我的信息'
+                },
+                children: [
+                    {
+                        path: '/myInfo/list',
+                        component: () => import('@/views/myInfo/myInfo'),
+                        name: 'MyInfo',
+                        hidden: true,
+                        meta: {
+                            showBread: true,
+                            name: '我的信息列表'
+                        }
+                    },
+                    {
+                        path: '/myInfo/componeyInfo',
+                        component: () => import('@/views/myInfo/componeyInfo'),
+                        name: 'ComponeyInfo',
+                        hidden: true,
+                        meta: {
+                            showBread: true,
+                            name: '公司信息'
+                        }
+                    }
+                ]
             }
         ]
     }

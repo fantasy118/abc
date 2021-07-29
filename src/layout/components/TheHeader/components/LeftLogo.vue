@@ -1,6 +1,6 @@
 <template>
     <div class="left-logo-container">
-        <svg-icon icon-class="icon-header" class-name="left-logo"/>
+        <img src="@/assets/logo.jpg" style="width:200px;height:68px;" alt="loginLogo">
     </div>
 </template>
 

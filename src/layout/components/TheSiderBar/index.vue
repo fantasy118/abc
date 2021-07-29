@@ -14,6 +14,7 @@
 <script>
 import routeList from '@/router/contantsRouter'
 import SubMenu from './subMenu'
+import { mapState } from 'vuex'
 export default {
     name: 'TheSiderBar',
     components: {
@@ -26,8 +27,9 @@ export default {
         }
     },
     computed: {
+        ...mapState('router', ['routeGroup']),
         menuList () {
-            const parentList = routeList.filter(item => item.meta && item.meta.group === 'ControlSider')
+            const parentList = routeList.filter(item => item.meta && item.meta.group === this.routeGroup)
             return parentList
         },
         allNodePath () {
@@ -48,6 +50,7 @@ export default {
     watch: {
         '$route.path': {
             handler (path) {
+                console.log(path)
                 this.openKeys = []
                 for (const item of this.allNodePath) {
                     if (path.includes(item) && !this.openKeys.includes(item)) {

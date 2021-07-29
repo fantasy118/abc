@@ -1,16 +1,16 @@
 <template>
     <div class="index-container">
-        index--公司信息
+        index
+        <router-link :to="{name:'ComponeyInfo'}">公司</router-link>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'ComponeyInfo'
+    name: 'MyInfo'
 
 }
 </script>
 
 <style lang='less' scoped>
-
 </style>
