@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "serve0": "vue-cli-service serve --mode stag",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
